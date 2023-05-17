@@ -5,7 +5,6 @@ require_relative './decorators'
 require_relative './rental'
 require_relative './book'
 
-
 person = Person.new(22, 'maximilianus')
 p person.correct_name
 capitalized_person = CapitalizeDecorator.new(person)
