@@ -46,9 +46,9 @@
 ### Key Features <a name="key-features"></a>
 
 
-- **Person class**
-- **Student class**
-- **Teacher class**
+- **Add students to classroom**
+- **A person can rent a book**
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
