@@ -35,17 +35,10 @@ def run_app(app, choice)
     app.rent_book
   when '6'
     app.display_rented_book
-  when '7'
+  else
     puts 'The App has been terminated, Bye!!'
     exit
-  else
-    puts 'Invalid choice, Choose another choice'
   end
 end
-
-# def terminate_app
-#   puts 'The App has been terminated, Bye!!'
-#   break
-# end
 
 main
