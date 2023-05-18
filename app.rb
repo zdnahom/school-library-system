@@ -4,12 +4,12 @@ require_relative './rental'
 require_relative './book'
 
 class App
-    def initialize
-        @books = []
-        @people = []
-        @rentals = []
-      end
-  
+  def initialize
+    @books = []
+    @people = []
+    @rentals = []
+  end
+
   def display_books
     @books.each do |book|
       puts "Title: '#{book.title}' , Author: #{book.author}"
@@ -22,38 +22,45 @@ class App
     end
   end
 
+  def add_student
+    print 'Age: '
+    age_input = gets.chomp
+
+    print 'Name: '
+    name_input = gets.chomp
+
+    print 'Has parent permission? [Y/N]: '
+    permission_input = gets.chomp
+
+    student = Student.new(age_input, name_input, parent_permission: permission_input)
+    @people.push(['Student', student])
+  end
+
+  def add_teacher
+    print 'Age: '
+    age_input = gets.chomp
+
+    print 'Name: '
+    name_input = gets.chomp
+
+    print 'Specialization: '
+    specialization_input = gets.chomp
+
+    teacher = Teacher.new(specialization_input, age_input, name_input)
+    @people.push(['Teacher', teacher])
+  end
+
   def add_new_person
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
     type = gets.chomp
     if type == '1'
-      print 'Age: '
-      age_input = gets.chomp
-
-      print 'Name: '
-      name_input = gets.chomp
-
-      print 'Has parent permission? [Y/N]: '
-      permission_input = gets.chomp
-
-      permission_input = permission_input != 'n'
-      student = Student.new(age_input, name_input, permission_input)
-      @people.push(['Student', student])
+      add_student
       puts 'Person created successfully!!'
     elsif type == '2'
-      print 'Age: '
-      age_input = gets.chomp
-
-      print 'Name: '
-      name_input = gets.chomp
-
-      print 'Specialization: '
-      specialization_input = gets.chomp
-
-      teacher = Teacher.new(specialization_input, age_input, name_input)
-      @people.push(['Teacher', teacher])
+      add_teacher
       puts 'Person created successfully!!'
     else
-      put 'Incorrect choice'
+      puts 'Incorrect choice'
     end
   end
 
@@ -65,7 +72,7 @@ class App
     author_input = gets.chomp
 
     book = Book.new(title_input, author_input)
-    @books << book
+    @books.push(book)
     puts 'Book created successfully!!'
   end
 
@@ -109,6 +116,4 @@ class App
     end
     rentals_by_id
   end
-
 end
-
