@@ -8,10 +8,9 @@ require_relative './book'
 class App
     @@books = []
     @@people = []
+
     def list_all_books
-        @@books.each do |book|
-            puts "Title: '#{book.title}' , Author: #{book.author}"
-        end
+        @@books
     end
     
     def add_book(title,author)
@@ -20,9 +19,7 @@ class App
     end
 
     def list_all_person
-       @@people.each do |person|
-        puts "[#{person[0]}]Name: #{person[1].name}, ID: #{person[1].id}, Age: #{person[1].age}"
-       end
+        @@people
     end
 
     def add_person(type,age,name,specialization='Unknown',permission = 'y')
