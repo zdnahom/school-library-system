@@ -1,22 +1,44 @@
-require_relative './person'
-require_relative './student'
-require_relative './teacher'
-require_relative './decorators'
-require_relative './rental'
-require_relative './book'
+require_relative 'app'
 
-person = Person.new(22, 'maximilianus')
-p person.correct_name
-capitalized_person = CapitalizeDecorator.new(person)
-p capitalized_person.correct_name
-capitalized_trimmed_person = TrimmerDecorator.new(capitalized_person)
-p capitalized_trimmed_person.correct_name
+OPTIONS = "Please choose an option by entering a number:
+1 - List all books
+2 - List all people
+3 - Create a person
+4 - Create a book
+5 - Create a rental
+6 - List all rentals for a given person id
+7 - Exit
+".freeze
 
-person1 = Person.new(17, 'nahom')
-person2 = Person.new(17, 'zerihun')
-book1 = Book.new('the book', 'znahom')
-person1.add_rental('2020-01-01', book1)
-book1.add_rental('2020-05-01', person2)
+def main
+  app = App.new
+  puts 'Welcome to School Library App'
+  loop do
+    puts
+    puts OPTIONS
+    choice = gets.chomp
+    run_app(app, choice)
+  end
+end
 
-p person1.rentals.count
-p(book1.rentals.map { |rental| rental.person.name })
+def run_app(app, choice)
+  case choice
+  when '1'
+    app.display_books
+  when '2'
+    app.display_people
+  when '3'
+    app.add_new_person
+  when '4'
+    app.add_new_book
+  when '5'
+    app.rent_book
+  when '6'
+    app.display_rented_book
+  else
+    puts 'The App has been terminated, Bye!!'
+    exit
+  end
+end
+
+main
