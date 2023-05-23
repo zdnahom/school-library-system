@@ -1,6 +1,6 @@
-class MenuDisplayer 
-    def display
-      puts "Please choose an option by entering a number:
+class MenuDisplayer
+  def display
+    puts "Please choose an option by entering a number:
          1 - List all books
          2 - List all people
          3 - Create a person
@@ -9,5 +9,5 @@ class MenuDisplayer
          6 - List all rentals for a given person id
          7 - Exit
          "
-    end
+  end
 end

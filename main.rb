@@ -10,7 +10,7 @@ def main
 
   loop do
     puts
-    menu_displayer.display()
+    menu_displayer.display
     choice = gets.chomp
     menu.choose_option(choice)
   end
