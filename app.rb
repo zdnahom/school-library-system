@@ -11,7 +11,7 @@ class App
     @store = StoreData.new
     @books = @store.load_data('./store/books.json')
     @people = @store.load_data('./store/people.json') 
-    @rentals = []
+    @rentals = @store.load_data('./store/rentals.json')
   end
 
   def display_books
@@ -106,20 +106,23 @@ class App
   def rent_book
     puts 'Select a book from the following list by number'
     @books.each_with_index do |book, index|
-      puts "#{index}) Title: '#{book.title}' , Author: #{book.author}"
+      puts "#{index}) Title: '#{book['title']}' , Author: #{book['author']}"
     end
     book_choice = gets.chomp
 
     puts 'Select a person from the following list by number (not id)'
     @people.each_with_index do |person, index|
-      puts "#{index}) [#{person[0]}]Name: #{person[1].name}, ID: #{person[1].id}, Age: #{person[1].age}"
+      puts "#{(index)} [#{person['type']}]Name: #{person['name']}, ID: #{person['id']}, Age: #{person['age']}"
     end
     person_choice = gets.chomp
 
     print 'Date: '
     date = gets.chomp
 
-    Rental.new(date, @books[book_choice.to_i], @people[person_choice.to_i][1])
+    rental = Rental.new(date, @books[book_choice.to_i], @people[person_choice.to_i])
+    rental_hash = {'date' => rental.date, 'book' => rental.book, 'person' => rental.person}
+    @rentals << rental_hash
+    @store.save_data('./store/rentals.json', @rentals)
     puts 'Rental created successfully'
   end
 
@@ -136,8 +139,8 @@ class App
   def find_rental(id)
     rentals_by_id = []
     @people.each do |person|
-      if person[1].id == id.to_i
-        rentals_by_id = person[1].rentals
+      if person.id == id.to_i
+        rentals_by_id = person.rentals
         rentals_by_id
       end
     end
