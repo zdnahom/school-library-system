@@ -2,17 +2,21 @@ require_relative './student'
 require_relative './teacher'
 require_relative './rental'
 require_relative './book'
+require_relative './store/store_data'
 
 class App
+  attr_reader :store
+
   def initialize
-    @books = []
+    @store = StoreData.new
+    @books = @store.load_data('./store/books.json')
     @people = []
     @rentals = []
   end
 
   def display_books
     @books.each do |book|
-      puts "Title: '#{book.title}' , Author: #{book.author}"
+      puts "Title: '#{book['title']}' , Author: #{book['author']}"
     end
   end
 
@@ -70,9 +74,11 @@ class App
 
     print 'Author : '
     author_input = gets.chomp
-
     book = Book.new(title_input, author_input)
-    @books.push(book)
+    book_hash = { 'title' => book.title, 'author' => book.author, 'rentals' => book.rentals }
+    @books << book_hash
+
+    @store.save_data('./store/books.json', @books)
     puts 'Book created successfully!!'
   end
 
