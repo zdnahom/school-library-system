@@ -10,7 +10,7 @@ class App
   def initialize
     @store = StoreData.new
     @books = @store.load_data('./store/books.json')
-    @people = @store.load_data('./store/people.json') 
+    @people = @store.load_data('./store/people.json')
     @rentals = @store.load_data('./store/rentals.json')
   end
 
@@ -38,14 +38,14 @@ class App
 
     student = Student.new(age_input, name_input, parent_permission: permission_input)
     student_hash = {
-      'type' => 'Student', 
-      'id' => student.id, 
+      'type' => 'Student',
+      'id' => student.id,
       'age' => student.age,
       'name' => student.name,
       'parent_permission' => student.parent_permission,
       'rentals' => student.rentals
-      }
-    
+    }
+
     @people << student_hash
 
     @store.save_data('./store/people.json', @people)
@@ -63,14 +63,14 @@ class App
 
     teacher = Teacher.new(specialization_input, age_input, name_input)
     teacher_hash = {
-      'type' => 'Teacher', 
-      'id' => teacher.id, 
+      'type' => 'Teacher',
+      'id' => teacher.id,
       'specialization' => teacher.specialization,
       'age' => teacher.age,
       'name' => teacher.name,
       'parent_permission' => teacher.parent_permission,
       'rentals' => teacher.rentals
-      }
+    }
     @people << teacher_hash
     @store.save_data('./store/people.json', @people)
   end
@@ -112,7 +112,7 @@ class App
 
     puts 'Select a person from the following list by number (not id)'
     @people.each_with_index do |person, index|
-      puts "#{(index)} [#{person['type']}]Name: #{person['name']}, ID: #{person['id']}, Age: #{person['age']}"
+      puts "#{index} [#{person['type']}]Name: #{person['name']}, ID: #{person['id']}, Age: #{person['age']}"
     end
     person_choice = gets.chomp
 
@@ -120,7 +120,7 @@ class App
     date = gets.chomp
 
     rental = Rental.new(date, @books[book_choice.to_i], @people[person_choice.to_i])
-    rental_hash = {'date' => rental.date, 'book' => rental.book, 'person' => rental.person}
+    rental_hash = { 'date' => rental.date, 'book' => rental.book, 'person' => rental.person }
     @rentals << rental_hash
     @store.save_data('./store/rentals.json', @rentals)
     puts 'Rental created successfully'
