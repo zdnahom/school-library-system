@@ -1,1 +1,1 @@
-[{"title":"b","author":"b","rentals":[]},{"title":"c","author":"c","rentals":[]},{"title":"d","author":"d","rentals":[]}]
+[{"type":"Student","id":569,"age":"11","name":"n","parent_permission":"y","rentals":[]},{"type":"Teacher","id":678,"specialization":"n","age":"90","name":"n","parent_permission":true,"rentals":[]}]

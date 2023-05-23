@@ -10,7 +10,7 @@ class App
   def initialize
     @store = StoreData.new
     @books = @store.load_data('./store/books.json')
-    @people = []
+    @people = @store.load_data('./store/people.json') 
     @rentals = []
   end
 
@@ -22,7 +22,7 @@ class App
 
   def display_people
     @people.each do |person|
-      puts "[#{person[0]}]Name: #{person[1].name}, ID: #{person[1].id}, Age: #{person[1].age}"
+      puts "[#{person['type']}]Name: #{person['name']}, ID: #{person['id']}, Age: #{person['age']}"
     end
   end
 
@@ -37,7 +37,18 @@ class App
     permission_input = gets.chomp
 
     student = Student.new(age_input, name_input, parent_permission: permission_input)
-    @people.push(['Student', student])
+    student_hash = {
+      'type' => 'Student', 
+      'id' => student.id, 
+      'age' => student.age,
+      'name' => student.name,
+      'parent_permission' => student.parent_permission,
+      'rentals' => student.rentals
+      }
+    
+    @people << student_hash
+
+    @store.save_data('./store/people.json', @people)
   end
 
   def add_teacher
@@ -51,7 +62,17 @@ class App
     specialization_input = gets.chomp
 
     teacher = Teacher.new(specialization_input, age_input, name_input)
-    @people.push(['Teacher', teacher])
+    teacher_hash = {
+      'type' => 'Teacher', 
+      'id' => teacher.id, 
+      'specialization' => teacher.specialization,
+      'age' => teacher.age,
+      'name' => teacher.name,
+      'parent_permission' => teacher.parent_permission,
+      'rentals' => teacher.rentals
+      }
+    @people << teacher_hash
+    @store.save_data('./store/people.json', @people)
   end
 
   def add_new_person
