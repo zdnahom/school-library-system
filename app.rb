@@ -9,20 +9,44 @@ class App
 
   def initialize
     @store = StoreData.new
-    @books = @store.load_data('./store/books.json')
-    @people = @store.load_data('./store/people.json')
-    @rentals = @store.load_data('./store/rentals.json')
+
+    if File.size?('./store/books.json').to_i.zero?
+      @books = []
+    else
+      @books = @store.load_data('./store/books.json')
+    end
+
+    if File.size?('./store/people.json').to_i.zero?
+      @people = []
+    else
+      @people = @store.load_data('./store/people.json')
+    end
+
+    if File.size?('./store/rentals.json').to_i.zero?
+      @rentals = []
+    else
+      @rentals = @store.load_data('./store/rentals.json')
+    end
+
   end
 
   def display_books
-    @books.each do |book|
-      puts "Title: '#{book['title']}' , Author: #{book['author']}"
+    if @books.length == 0 
+      puts 'No book available!'
+    else
+      @books.each do |book|
+        puts "Title: '#{book['title']}' , Author: #{book['author']}"
+      end
     end
   end
 
   def display_people
-    @people.each do |person|
-      puts "[#{person['type']}]Name: #{person['name']}, ID: #{person['id']}, Age: #{person['age']}"
+    if @people.length == 0
+      puts 'No person registered right now!'
+    else
+      @people.each do |person|
+        puts "[#{person['type']}]Name: #{person['name']}, ID: #{person['id']}, Age: #{person['age']}"
+      end
     end
   end
 
@@ -132,15 +156,16 @@ class App
     rentals = find_rental(id)
     puts 'Rentals: '
     rentals.each do |rental|
-      puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}"
+      puts "Date: #{rental['date']}, Book: #{rental['book']['title']} by #{rental['book']['author']}"
     end
   end
 
   def find_rental(id)
     rentals_by_id = []
-    @people.each do |person|
-      if person.id == id.to_i
-        rentals_by_id = person.rentals
+    @rentals.each do |rental|
+      person = rental['person']
+      if person['id'] == id.to_i
+        rentals_by_id << rental
         rentals_by_id
       end
     end
