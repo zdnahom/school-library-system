@@ -1,0 +1,64 @@
+[
+  {
+    "date": "200",
+    "book": {
+      "title": "the sleep",
+      "author": "sleeper",
+      "rentals": [
+        "#<Rental:0x000001924c686bb0>"
+      ]
+    },
+    "person": {
+      "type": "Teacher",
+      "id": 41,
+      "specialization": "law",
+      "age": "54",
+      "name": "nahom",
+      "parent_permission": true,
+      "rentals": [
+        "#<Rental:0x000001924c686bb0>"
+      ]
+    }
+  },
+  {
+    "date": "201",
+    "book": {
+      "title": "the sleep",
+      "author": "sleeper",
+      "rentals": [
+        "#<Rental:0x000001ada4d551d0>"
+      ]
+    },
+    "person": {
+      "type": "Teacher",
+      "id": 41,
+      "specialization": "law",
+      "age": "54",
+      "name": "nahom",
+      "parent_permission": true,
+      "rentals": [
+        "#<Rental:0x000001ada4d551d0>"
+      ]
+    }
+  },
+  {
+    "date": "2022",
+    "book": {
+      "title": "the book",
+      "author": "auth",
+      "rentals": [
+        "#<Rental:0x000002b0f4dbaae0>"
+      ]
+    },
+    "person": {
+      "type": "Student",
+      "id": 369,
+      "age": "15",
+      "name": "nunu",
+      "parent_permission": "y",
+      "rentals": [
+        "#<Rental:0x000002b0f4dbaae0>"
+      ]
+    }
+  }
+]

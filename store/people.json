@@ -1,0 +1,23 @@
+[
+  {
+    "type": "Teacher",
+    "id": 41,
+    "specialization": "law",
+    "age": "54",
+    "name": "nahom",
+    "parent_permission": true,
+    "rentals": [
+
+    ]
+  },
+  {
+    "type": "Student",
+    "id": 369,
+    "age": "15",
+    "name": "nunu",
+    "parent_permission": "y",
+    "rentals": [
+
+    ]
+  }
+]
