@@ -112,6 +112,13 @@ You can deploy this project using:
 
 - GitHub: [@zdnahom](https://github.com/zdnahom)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/nahomzd)
+- Twitter: [@nahom11](https://twitter.com/Nahomzerihun11)
+  
+👤 **Author2**
+
+- GitHub: [@yodit93](https://github.com/yodit93)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/yodit-abebe-ayalew)
+- LinkedIn: [Yodit Abebe](https://www.linkedin.com/in/yodit-abebe-ayalew/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
