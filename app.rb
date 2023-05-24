@@ -10,28 +10,27 @@ class App
   def initialize
     @store = StoreData.new
 
-    if File.size?('./store/books.json').to_i.zero?
-      @books = []
-    else
-      @books = @store.load_data('./store/books.json')
-    end
+    @books = if File.size?('./store/books.json').to_i.zero?
+               []
+             else
+               @store.load_data('./store/books.json')
+             end
 
-    if File.size?('./store/people.json').to_i.zero?
-      @people = []
-    else
-      @people = @store.load_data('./store/people.json')
-    end
+    @people = if File.size?('./store/people.json').to_i.zero?
+                []
+              else
+                @store.load_data('./store/people.json')
+              end
 
-    if File.size?('./store/rentals.json').to_i.zero?
-      @rentals = []
-    else
-      @rentals = @store.load_data('./store/rentals.json')
-    end
-
+    @rentals = if File.size?('./store/rentals.json').to_i.zero?
+                 []
+               else
+                 @store.load_data('./store/rentals.json')
+               end
   end
 
   def display_books
-    if @books.length == 0 
+    if @books.empty?
       puts 'No book available!'
     else
       @books.each do |book|
@@ -41,7 +40,7 @@ class App
   end
 
   def display_people
-    if @people.length == 0
+    if @people.empty?
       puts 'No person registered right now!'
     else
       @people.each do |person|
